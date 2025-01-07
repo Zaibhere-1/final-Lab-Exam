@@ -1,0 +1,74 @@
+<Application x:Class="_203131_final_Question_1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:_203131_final_Question_1"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        @page "/quiz"
+
+@code {
+    private List
+        <Question>quizQuestions = new()
+    {
+        new Question
+        {
+            Text = "What is the capital of France?",
+            Options = new List
+            <string>{ "Paris", "London", "Berlin", "Madrid" },
+            DifficultyLevel = "Easy"
+        },
+        new Question
+        {
+            Text = "What is 2 + 2?",
+            Options = new List
+                <string>{ "3", "4", "5", "6" },
+            DifficultyLevel = "Easy"
+        }
+    };
+}
+
+                    <h3>Quiz Questions</h3>
+                    <QuestionList Questions="quizQuestions" />
+
+                    @code {
+    public class Question
+    {
+        public string Text { get; set; } = string.Empty;
+        public List
+                    <string>Options { get; set; } = new();
+        public string DifficultyLevel { get; set; } = string.Empty;
+    }
+
+    @* QuestionCard Component *@
+    [Parameter]
+    public string QuestionText { get; set; } = string.Empty;
+
+    [Parameter]
+    public List
+                        <string>Options { get; set; } = new();
+
+    [Parameter]
+    public string DifficultyLevel { get; set; } = string.Empty;
+
+    @* QuestionList Component *@
+    [Parameter]
+    public List
+                            <Question>Questions { get; set; } = new();
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@QuestionText</h5>
+                                        <ul>
+                                            @foreach (var option in Options)
+                {
+                                            <li>@option</li>
+                                            }
+                                        </ul>
+                                        <p>
+                                            <strong>Difficulty Level:</strong> @DifficultyLevel
+                                        </p>
+                                    </div>
+                                </div>
+                                }
+    </Application.Resources>
+</Application>
